@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Recompensas | Topara</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="recompensas.css" />
+</head>
+<body>
+  <main class="screen">
+
+    <!-- Encabezado -->
+    <header class="head">
+      <div class="head__row">
+        <button type="button" class="head__back" id="btn-volver" aria-label="Volver">
+          <img src="assets/icons/arrow-left-black.svg" alt="" width="26" height="26" />
+        </button>
+        <h1 class="head__title">Recompensas</h1>
+        <div class="pill">
+          <img src="assets/icons/mountain-orange.svg" alt="" width="18" height="18" />
+          <span id="pill-cimas">12 cimas</span>
+        </div>
+      </div>
+      <p class="head__sub">Desbloquea planes de nutrición, recuperación y descuentos exclusivos con cada cima</p>
+    </header>
+
+    <!-- Próxima recompensa -->
+    <section class="next" id="next" aria-labelledby="next-title"></section>
+
+    <!-- Mis metas -->
+    <section class="block" aria-labelledby="t-metas">
+      <div class="block__head">
+        <h2 class="block__title" id="t-metas">Mis Metas</h2>
+        <span class="block__hint" id="metas-resumen"></span>
+      </div>
+      <div class="tabs" id="metas-tabs" role="group" aria-label="Filtrar metas"></div>
+      <div class="metas" id="metas" aria-live="polite"></div>
+    </section>
+
+    <!-- Retos y promociones -->
+    <section class="block block--bleed" aria-labelledby="t-retos">
+      <div class="block__head">
+        <h2 class="block__title" id="t-retos">Retos y Promociones</h2>
+        <span class="block__hint" id="retos-contador"></span>
+      </div>
+      <div class="retos" id="retos" tabindex="0" aria-label="Retos y promociones activos"></div>
+      <div class="dots" id="retos-dots" aria-hidden="true"></div>
+    </section>
+
+    <!-- Próximos eventos -->
+    <section class="block" aria-labelledby="t-eventos">
+      <div class="block__head">
+        <h2 class="block__title" id="t-eventos">Próximos Eventos</h2>
+        <a class="block__link" href="#" id="ver-eventos">VER TODOS</a>
+      </div>
+      <div class="events" id="eventos"></div>
+    </section>
+
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="recompensas.js"></script>
+</body>
+</html>

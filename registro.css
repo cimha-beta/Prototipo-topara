@@ -1,0 +1,248 @@
+:root {
+  --bg: #fff;
+  --text: #000;
+  --muted: #7a7a7a;
+  --line: #e4e4e4;
+  --orange: #ec6f47;
+  --orange-tint: #fdefe9;
+  --blue: #3aa8dc;
+  --pink: #e98fbf;
+  --danger: #d93025;
+  --ok: #2e9e6b;
+  --font: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+h1, h2, p, fieldset, legend { margin: 0; padding: 0; }
+fieldset { border: 0; min-width: 0; }
+button, input, textarea { font-family: inherit; color: inherit; }
+img { display: block; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- Estructura ---------- */
+.screen {
+  max-width: 430px; min-height: 100dvh; margin: 0 auto;
+  display: flex; flex-direction: column;
+  animation: entrada .4s ease-out;
+  transition: opacity .3s ease, transform .3s ease;
+}
+.screen.salir { opacity: 0; transform: translateY(10px); }
+
+@keyframes entrada {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.form { flex: 1; padding: 6px 22px 28px; }
+
+.appbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 14px;
+  padding: calc(14px + env(safe-area-inset-top, 0px)) 16px 14px;
+  background: #fff; border-bottom: 1px solid var(--line);
+}
+.appbar__back { width: 40px; height: 40px; display: grid; place-items: center; border: 0; background: none; border-radius: 50%; cursor: pointer; }
+.appbar__back:focus-visible { outline: 2px solid var(--orange); }
+.appbar__title { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+
+/* Cada bloque queda separado por una línea fina */
+.group { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.group--last { border-bottom: 0; padding-bottom: 8px; }
+.group__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.group__title { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 14px; display: block; }
+.group__head .group__title { margin-bottom: 0; }
+.group__title--sm { font-size: 16px; }
+.group__hint { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+
+/* ---------- Campos ---------- */
+.field + .field { margin-top: 22px; }
+.field__label { display: block; margin-bottom: 10px; font-size: 15px; font-weight: 800; }
+.req { color: var(--orange); }
+
+.input {
+  width: 100%; height: 54px; padding: 0 18px;
+  font-size: 16px; font-weight: 600;
+  background: #fff; border: 1.5px solid var(--text); border-radius: 18px; outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.input::placeholder { color: #b4b4b4; font-weight: 500; }
+.input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(236, 111, 71, .15); }
+[aria-invalid="true"] { border-color: var(--danger) !important; }
+
+.error { margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--danger); }
+.error--panel { padding: 0 16px 10px; margin-top: -4px; }
+
+/* ---------- Tipo de actividad ---------- */
+.tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.tile { display: block; cursor: pointer; }
+.tile__body {
+  height: 100%; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 14px 4px 12px;
+  background: #fff; border: 1.5px solid var(--text); border-radius: 18px;
+  transition: border-color .15s, background-color .15s;
+}
+.tile__icon { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; }
+.tile__icon img { width: 22px; height: 22px; }
+.tile__text { font-size: 11.5px; font-weight: 800; text-align: center; line-height: 1.15; }
+.tile input:checked + .tile__body { border: 2px solid var(--orange); background: var(--orange-tint); padding: 13.5px 3.5px 11.5px; }
+.tile input:focus-visible + .tile__body { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+.bg-senderismo { background: var(--blue); }
+.bg-ciclismo   { background: var(--orange); }
+.bg-montanismo { background: var(--text); }
+.bg-trail      { background: var(--pink); }
+
+/* ---------- Panel Recorrido ---------- */
+.panel { border: 1.5px solid var(--text); border-radius: 20px; overflow: hidden; }
+.panel:focus-within { border-color: var(--orange); }
+.row { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 8px 16px; }
+.row + .row, .error--panel + .row { border-top: 1px solid var(--line); }
+.row__icon { width: 36px; height: 36px; flex: none; display: grid; place-items: center; background: #f3f3f3; border-radius: 11px; }
+.row__label { font-size: 14px; font-weight: 700; min-width: 68px; }
+.row__control { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: flex-end; gap: 10px; position: relative; }
+.row__input {
+  flex: 1; min-width: 0; width: 100%; border: 0; outline: none; background: transparent;
+  text-align: right; font-size: 24px; font-weight: 800; letter-spacing: -0.01em;
+}
+.row__input::placeholder { color: #cfcfcf; }
+.row__input--date { font-size: 16px; font-weight: 700; text-align: right; padding-right: 30px; }
+.row__input--date::-webkit-calendar-picker-indicator { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.row__cal { position: absolute; right: 0; pointer-events: none; }
+
+.seg { display: flex; flex: none; padding: 3px; background: #f1f1f1; border-radius: 12px; }
+.seg button {
+  min-width: 40px; padding: 7px 8px; border: 0; background: transparent; border-radius: 9px;
+  font-size: 12px; font-weight: 800; color: var(--muted); cursor: pointer;
+}
+.seg button.is-active { background: var(--text); color: #fff; }
+
+/* ---------- Datos de la actividad ---------- */
+.sync { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; color: var(--muted); }
+.sync[data-state="synced"] { color: var(--ok); }
+
+.metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.metric {
+  padding: 14px 16px 16px;
+  border: 1.5px solid var(--text); border-radius: 20px;
+  transition: border-color .15s, box-shadow .15s;
+}
+.metric:focus-within { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(236, 111, 71, .12); }
+.metric__label { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--muted); }
+.metric__value { display: flex; align-items: baseline; gap: 4px; margin-top: 12px; min-width: 0; }
+.num {
+  flex: 1; min-width: 0; width: 100%; padding: 0; border: 0; outline: none; background: transparent;
+  font-size: 26px; font-weight: 800; letter-spacing: -0.02em;
+}
+.num--sm { flex: none; width: 2.1ch; text-align: right; }
+.num::placeholder { color: #cfcfcf; }
+.unit { font-size: 14px; font-weight: 800; margin-right: 4px; }
+.prefix { font-size: 22px; font-weight: 800; color: var(--orange); }
+
+/* ---------- Prendas ---------- */
+.gear-list {
+  display: flex; gap: 12px;
+  margin: 0 -22px; padding: 4px 22px 8px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+}
+.gear-list::-webkit-scrollbar { display: none; }
+.gear { flex: 0 0 46%; max-width: 190px; scroll-snap-align: start; cursor: pointer; display: block; }
+.gear__card {
+  height: 100%; display: flex; flex-direction: column; overflow: hidden;
+  border: 1.5px solid var(--text); border-radius: 22px; background: #fff;
+  transition: border-color .15s;
+}
+.gear__photo { position: relative; aspect-ratio: 1 / 1.05; background: #f0f0ee; }
+.gear__photo img.gear__img { width: 100%; height: 100%; object-fit: cover; }
+.gear__tag {
+  position: absolute; left: 10px; bottom: 10px; padding: 4px 8px;
+  background: rgba(0, 0, 0, .82); color: #fff; border-radius: 6px;
+  font-size: 10px; font-weight: 800; letter-spacing: .04em;
+}
+.gear__check {
+  position: absolute; top: 10px; right: 10px; width: 26px; height: 26px;
+  display: none; place-items: center; background: var(--orange); border-radius: 50%;
+}
+.gear__body { display: flex; flex-direction: column; gap: 3px; padding: 12px 14px 16px; }
+.gear__eyebrow { font-size: 11.5px; font-weight: 600; color: var(--muted); }
+.gear__eyebrow--on { display: none; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--orange); }
+.gear__name { font-size: 15px; font-weight: 800; line-height: 1.2; }
+
+.gear input:checked + .gear__card { border: 2px solid var(--orange); }
+.gear input:checked + .gear__card .gear__check { display: grid; }
+.gear input:checked + .gear__card .gear__eyebrow { display: none; }
+.gear input:checked + .gear__card .gear__eyebrow--on { display: block; }
+.gear input:focus-visible + .gear__card { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+.gear-add {
+  flex: 0 0 34%; max-width: 140px; scroll-snap-align: start;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  border: 1.5px dashed #b9b9b9; border-radius: 22px; background: #fafafa;
+  font-size: 13px; font-weight: 700; color: var(--muted); cursor: pointer;
+}
+
+/* ---------- Escala de esfuerzo (RPE) ---------- */
+.rpe {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
+  padding: 8px; border: 1.5px solid var(--text); border-radius: 22px;
+}
+.rpe__opt { display: block; cursor: pointer; }
+.rpe__body {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 12px 2px 10px; border: 1.5px solid transparent; border-radius: 16px;
+  transition: background-color .15s, border-color .15s;
+}
+.rpe__body img { width: 30px; height: 30px; }
+.rpe__label { font-size: 11.5px; font-weight: 600; color: var(--muted); }
+.rpe__opt input:checked + .rpe__body { background: var(--orange-tint); border-color: var(--orange); }
+.rpe__opt input:checked + .rpe__body .rpe__label { color: var(--text); font-weight: 800; }
+.rpe__opt input:focus-visible + .rpe__body { outline: 2px solid var(--orange); outline-offset: 1px; }
+
+/* ---------- Experiencia ---------- */
+.textarea {
+  width: 100%; min-height: 120px; padding: 16px 18px; resize: vertical;
+  font-size: 15px; font-weight: 500; line-height: 1.5;
+  border: 1.5px solid var(--text); border-radius: 20px; outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.textarea::placeholder { color: #b4b4b4; }
+.textarea:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(236, 111, 71, .15); }
+
+/* ---------- Barra de guardado ---------- */
+.savebar {
+  position: sticky; bottom: 0; z-index: 10;
+  padding: 14px 22px calc(14px + env(safe-area-inset-bottom, 0px));
+  background: #fff; border-top: 1px solid var(--line);
+}
+.btn {
+  width: 100%; height: 58px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--orange); color: #fff; border: 0; border-radius: 20px;
+  font-size: 18px; font-weight: 800; cursor: pointer;
+  transition: transform .05s, filter .15s;
+}
+.btn:hover { filter: brightness(.96); }
+.btn:active { transform: scale(.99); }
+.btn:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+
+/* ---------- Aviso ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); z-index: 20;
+  transform: translateX(-50%); max-width: calc(100% - 44px);
+  padding: 12px 18px; background: var(--text); color: #fff;
+  border-radius: 14px; font-size: 14px; font-weight: 700;
+}
+
+@media (max-width: 360px) {
+  .tile__text { font-size: 10.5px; }
+  .rpe__label { font-size: 10.5px; }
+  .num { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .screen { animation: none; }
+}

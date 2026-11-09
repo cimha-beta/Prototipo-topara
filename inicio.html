@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Inicio | Topara</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="inicio.css" />
+</head>
+<body>
+  <main class="screen">
+
+    <!-- Encabezado -->
+    <header class="top">
+      <h1 class="top__title">Mi Mapa</h1>
+      <div class="pill">
+        <img src="assets/icons/mountain-black.svg" alt="" width="20" height="20" />
+        <span id="pill-count">12 cimas</span>
+      </div>
+    </header>
+
+    <!-- Saludo -->
+    <section class="greeting">
+      <div class="avatar" aria-hidden="true">D</div>
+      <div class="greeting__text">
+        <p class="greeting__name">Hola, David</p>
+        <p class="greeting__sub" id="greeting-count">12 cimas registrados</p>
+      </div>
+      <button type="button" class="bell" id="btn-notificaciones" aria-label="Notificaciones">
+        <img src="assets/icons/bell-black.svg" alt="" width="24" height="24" />
+      </button>
+    </section>
+
+    <!-- Filtros -->
+    <nav class="chips" id="chips" aria-label="Filtrar por actividad">
+      <button type="button" class="chip is-active" data-filter="todas">Todas</button>
+      <button type="button" class="chip" data-filter="senderismo">Senderismo</button>
+      <button type="button" class="chip" data-filter="ciclismo">Ciclismo</button>
+      <button type="button" class="chip" data-filter="montanismo">Montañismo</button>
+      <button type="button" class="chip" data-filter="escalada">Escalada</button>
+    </nav>
+
+    <!-- Mapa -->
+    <section class="map" aria-label="Mapa de cimas registradas">
+      <img class="map__img" src="assets/mapa-cimas.png" alt="" />
+      <div class="map__markers" id="markers"></div>
+      <span class="map__label">Mapa de Cimas Registradas</span>
+    </section>
+
+    <!-- Acciones -->
+    <button type="button" class="btn btn--primary" id="btn-registrar">
+      <img src="assets/icons/plus-black.svg" alt="" width="22" height="22" />
+      <span>Registrar Tu Nueva Cima</span>
+    </button>
+    <button type="button" class="btn btn--outline" id="btn-recompensas">Recompensas</button>
+
+    <!-- Estadísticas -->
+    <h2 class="section-title">Estadísticas Generales</h2>
+    <section class="stats" id="stats" aria-label="Resumen">
+      <article class="card stat-main">
+        <div class="stat-main__icon">
+          <img src="assets/icons/mountain-white.svg" alt="" width="52" height="52" />
+        </div>
+        <p class="stat-main__value" id="stat-cimas">12</p>
+        <p class="stat-main__label">Cimas</p>
+      </article>
+
+      <article class="card stat">
+        <span class="stat__icon stat__icon--black"><img src="assets/icons/pin-white.svg" alt="" width="22" height="22" /></span>
+        <div>
+          <p class="stat__value"><strong id="stat-distancia">148</strong><small>km</small></p>
+          <p class="stat__label">Distancia</p>
+        </div>
+      </article>
+
+      <article class="card stat">
+        <span class="stat__icon stat__icon--black"><img src="assets/icons/clock-white.svg" alt="" width="22" height="22" /></span>
+        <div>
+          <p class="stat__value"><strong id="stat-horas">36</strong><small>h</small><strong id="stat-minutos">21</strong><small>min</small></p>
+          <p class="stat__label">Tiempo</p>
+        </div>
+      </article>
+
+      <article class="card stat">
+        <span class="stat__icon stat__icon--orange"><img src="assets/icons/trend-white.svg" alt="" width="22" height="22" /></span>
+        <div>
+          <p class="stat__value"><strong id="stat-desnivel">8.450</strong><small>m</small></p>
+          <p class="stat__label">Desnivel</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Última cima -->
+    <h2 class="section-title">Última cima</h2>
+    <article class="card last" id="ultima-cima" tabindex="0" role="button" aria-label="Ver detalle de la última cima">
+      <div class="last__head">
+        <span class="badge badge--senderismo"><img src="assets/icons/footprints-white.svg" alt="" width="26" height="26" /></span>
+        <div class="last__info">
+          <h3 class="last__name">Mi Primera Carrera</h3>
+          <p class="last__meta">Caminata · hace 2 días</p>
+        </div>
+        <img class="last__arrow" src="assets/icons/arrow-up-right-black.svg" alt="" width="20" height="20" />
+      </div>
+      <p class="last__time">4h 20min</p>
+      <dl class="last__grid">
+        <div><dt>Distancia</dt><dd>14.2 km</dd></div>
+        <div><dt>Desnivel</dt><dd>+680 m</dd></div>
+        <div><dt>Altitud</dt><dd>1.028 m</dd></div>
+      </dl>
+    </article>
+
+    <!-- Historial -->
+    <h2 class="section-title">Historial de Cimas</h2>
+    <nav class="month-tabs" id="meses" aria-label="Filtrar historial por mes"></nav>
+    <div id="historial"></div>
+
+  </main>
+
+  <script src="inicio.js"></script>
+</body>
+</html>

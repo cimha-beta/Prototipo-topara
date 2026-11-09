@@ -1,0 +1,44 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; background: #fff; overflow: hidden; }
+
+.app {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 100dvh;
+  margin: 0 auto;
+  background: #fff;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.pantalla { position: absolute; inset: 0; background: #fff; }
+
+.splash { display: flex; align-items: center; justify-content: center; }
+
+.grupo { display: flex; flex-direction: column; align-items: center; gap: 6.7cqw; }
+
+.logo { position: relative; width: 25cqw; aspect-ratio: 540 / 506; opacity: 0; transform-origin: 50% 100%; }
+.logo img { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.texto { display: block; width: 49.2cqw; opacity: 0; }
+
+.logo.anim { animation: logo cubic-bezier(.2, .8, .2, 1) forwards; }
+
+@keyframes logo {
+  from { opacity: 1; transform: scale(.8, 0); }
+  to   { opacity: 1; transform: scale(1, 1); }
+}
+
+.registro {
+  display: flex; align-items: center; justify-content: center;
+  transform: translateY(100%);
+  transition: transform .6s cubic-bezier(.22, .8, .2, 1);
+}
+.registro.visible { transform: translateY(0); }
+.pendiente { font: 500 16px/1.4 system-ui, sans-serif; color: #000; }
+
+@media (prefers-reduced-motion: reduce) {
+  .registro { transition-duration: .01s; }
+}

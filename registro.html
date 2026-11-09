@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Registro de Cima | Topara</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="registro.css" />
+</head>
+<body>
+  <div class="screen">
+
+    <header class="appbar">
+      <button type="button" class="appbar__back" id="btn-volver" aria-label="Volver">
+        <img src="assets/icons/arrow-left-black.svg" alt="" width="26" height="26" />
+      </button>
+      <h1 class="appbar__title">Registro de Cima</h1>
+    </header>
+
+    <form id="registro-form" class="form" novalidate>
+
+      <!-- 1. Identificación -->
+      <section class="group" aria-labelledby="g-cima">
+        <h2 class="sr-only" id="g-cima">Datos de la cima</h2>
+
+        <div class="field">
+          <label class="field__label" for="nombre">Nombre de la cima <span class="req" aria-hidden="true">*</span></label>
+          <input class="input" id="nombre" name="nombre" type="text" maxlength="60"
+                 placeholder="Ej. Paseo por el Parque Natural" autocomplete="off" required />
+          <p class="error" id="err-nombre" role="alert" hidden></p>
+        </div>
+
+        <fieldset class="field fieldset">
+          <legend class="field__label">Tipo de actividad</legend>
+          <div class="tiles" id="tipos">
+            <label class="tile">
+              <input type="radio" name="tipo" value="senderismo" class="sr-only" />
+              <span class="tile__body">
+                <span class="tile__icon bg-senderismo"><img src="assets/icons/footprints-white.svg" alt="" /></span>
+                <span class="tile__text">Senderismo</span>
+              </span>
+            </label>
+            <label class="tile">
+              <input type="radio" name="tipo" value="ciclismo" class="sr-only" />
+              <span class="tile__body">
+                <span class="tile__icon bg-ciclismo"><img src="assets/icons/bike-white.svg" alt="" /></span>
+                <span class="tile__text">Ciclismo</span>
+              </span>
+            </label>
+            <label class="tile">
+              <input type="radio" name="tipo" value="montanismo" class="sr-only" />
+              <span class="tile__body">
+                <span class="tile__icon bg-montanismo"><img src="assets/icons/pulse-white.svg" alt="" /></span>
+                <span class="tile__text">Montañismo</span>
+              </span>
+            </label>
+            <label class="tile">
+              <input type="radio" name="tipo" value="trail-run" class="sr-only" />
+              <span class="tile__body">
+                <span class="tile__icon bg-trail"><img src="assets/icons/mountain-black.svg" alt="" /></span>
+                <span class="tile__text">Trail Run</span>
+              </span>
+            </label>
+          </div>
+          <p class="error" id="err-tipo" role="alert" hidden></p>
+        </fieldset>
+      </section>
+
+      <!-- 2. Recorrido: distancia + fecha -->
+      <section class="group" aria-labelledby="g-recorrido">
+        <h2 class="group__title" id="g-recorrido">Recorrido</h2>
+
+        <div class="panel">
+          <div class="row">
+            <span class="row__icon"><img src="assets/icons/route-black.svg" alt="" width="20" height="20" /></span>
+            <label class="row__label" for="distancia">Distancia</label>
+            <div class="row__control">
+              <input class="row__input" id="distancia" name="distancia" type="text" inputmode="decimal"
+                     placeholder="0.0" autocomplete="off" />
+              <div class="seg" id="unidad" role="group" aria-label="Unidad de distancia">
+                <button type="button" class="is-active" data-unit="km" aria-pressed="true">KM</button>
+                <button type="button" data-unit="mi" aria-pressed="false">MI</button>
+              </div>
+            </div>
+          </div>
+          <p class="error error--panel" id="err-distancia" role="alert" hidden></p>
+
+          <div class="row">
+            <span class="row__icon"><img src="assets/icons/calendar-black.svg" alt="" width="20" height="20" /></span>
+            <label class="row__label" for="fecha">Fecha</label>
+            <div class="row__control row__control--date">
+              <input class="row__input row__input--date" id="fecha" name="fecha" type="date" />
+              <img class="row__cal" src="assets/icons/calendar-black.svg" alt="" width="20" height="20" />
+            </div>
+          </div>
+          <p class="error error--panel" id="err-fecha" role="alert" hidden></p>
+        </div>
+      </section>
+
+      <!-- 3. Datos de la actividad -->
+      <section class="group" aria-labelledby="g-datos">
+        <div class="group__head">
+          <h2 class="group__title" id="g-datos">Datos de la actividad</h2>
+          <span class="sync" id="sync" data-state="manual">
+            <img id="sync-icon" src="assets/icons/refresh-gray.svg" alt="" width="14" height="14" />
+            <span id="sync-text">Ingreso manual</span>
+          </span>
+        </div>
+
+        <div class="metrics">
+          <div class="metric">
+            <label class="metric__label" for="horas">
+              <img src="assets/icons/clock-gray.svg" alt="" width="16" height="16" />Tiempo
+            </label>
+            <div class="metric__value">
+              <input id="horas" type="text" inputmode="numeric" placeholder="0" class="num num--sm" aria-label="Horas" />
+              <span class="unit">h</span>
+              <input id="minutos" type="text" inputmode="numeric" placeholder="00" class="num num--sm" aria-label="Minutos" />
+              <span class="unit">min</span>
+            </div>
+          </div>
+
+          <div class="metric">
+            <label class="metric__label" for="desnivel">
+              <img src="assets/icons/trend-gray.svg" alt="" width="16" height="16" />Desnivel
+            </label>
+            <div class="metric__value">
+              <span class="prefix" aria-hidden="true">+</span>
+              <input id="desnivel" type="text" inputmode="numeric" placeholder="0" class="num" />
+              <span class="unit">m</span>
+            </div>
+          </div>
+
+          <div class="metric">
+            <label class="metric__label" for="altitud">
+              <img src="assets/icons/mountain-gray.svg" alt="" width="16" height="16" />Altitud máxima
+            </label>
+            <div class="metric__value">
+              <input id="altitud" type="text" inputmode="numeric" placeholder="0" class="num" />
+              <span class="unit">m</span>
+            </div>
+          </div>
+
+          <div class="metric">
+            <label class="metric__label" for="calorias">
+              <img src="assets/icons/flame-gray.svg" alt="" width="16" height="16" />Calorías
+            </label>
+            <div class="metric__value">
+              <input id="calorias" type="text" inputmode="numeric" placeholder="0" class="num" />
+              <span class="unit">kcal</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Prenda usada -->
+      <section class="group" aria-labelledby="g-prenda">
+        <h2 class="group__title" id="g-prenda">Prenda usada</h2>
+        <div class="gear-list" id="prendas" role="radiogroup" aria-labelledby="g-prenda"></div>
+      </section>
+
+      <!-- 5. Escala de esfuerzo -->
+      <section class="group" aria-labelledby="g-rpe">
+        <div class="group__head">
+          <h2 class="group__title" id="g-rpe">¿Cómo te sentiste?</h2>
+          <span class="group__hint">RPE · Escala 1-5</span>
+        </div>
+        <div class="rpe" id="rpe" role="radiogroup" aria-labelledby="g-rpe"></div>
+      </section>
+
+      <!-- 6. Experiencia -->
+      <section class="group group--last" aria-labelledby="g-exp">
+        <div class="group__head">
+          <label class="group__title group__title--sm" id="g-exp" for="experiencia">Cuéntanos tu experiencia</label>
+          <span class="group__hint" id="contador">0 / 300</span>
+        </div>
+        <textarea class="textarea" id="experiencia" name="experiencia" rows="4" maxlength="300"
+                  placeholder="Cómo estuvo el clima, el terreno, tu ritmo y tu equipo…"></textarea>
+      </section>
+    </form>
+
+    <footer class="savebar">
+      <button type="submit" form="registro-form" class="btn" id="btn-guardar">
+        <img src="assets/icons/flag-white.svg" alt="" width="22" height="22" />
+        <span>Guardar cima</span>
+      </button>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="registro.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Crear una cuenta | Topara</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <main class="screen">
+    <img class="logo" src="assets/logo-topara.svg" alt="Topara" width="66" height="60" />
+
+    <h1 class="title">Crear una Cuenta</h1>
+    <p class="subtitle">Introduce tu correo electrónico para registrarte en esta aplicación</p>
+
+    <form id="signup-form" class="form" novalidate>
+      <label class="sr-only" for="email">Correo electrónico</label>
+      <input
+        id="email"
+        name="email"
+        class="input"
+        type="email"
+        placeholder="email@domain.com"
+        autocomplete="email"
+        inputmode="email"
+        required
+      />
+      <p id="email-error" class="error" role="alert" hidden></p>
+
+      <button type="submit" class="btn btn--primary">Continuar</button>
+    </form>
+
+    <div class="divider" role="separator" aria-label="o"><span>o</span></div>
+
+    <button type="button" class="btn btn--social" id="btn-google">
+      <img src="assets/google.svg" alt="" width="22" height="22" />
+      <span>Continuar con Google</span>
+    </button>
+
+    <button type="button" class="btn btn--social" id="btn-apple">
+      <img src="assets/apple.svg" alt="" width="22" height="22" />
+      <span>Continuar con Apple</span>
+    </button>
+
+    <p class="legal">
+      Al hacer clic en continuar, aceptas nuestros
+      <a href="/terminos">Términos de Servicio</a> y nuestra
+      <a href="/privacidad">Política de Privacidad</a>
+    </p>
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>
