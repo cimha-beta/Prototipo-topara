@@ -151,6 +151,11 @@
     s.classList.add("salir");
     setTimeout(() => { window.location.href = "recompensas.html"; }, 300);
   });
+  document.getElementById("btn-pasaporte").addEventListener("click", () => {
+    const s = document.querySelector(".screen");
+    s.classList.add("salir");
+    setTimeout(() => { window.location.href = "pasaporte.html"; }, 300);
+  });
 
   window.addEventListener("pageshow", () => {
     const scr = document.querySelector(".screen");

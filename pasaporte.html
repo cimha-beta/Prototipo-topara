@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Pasaporte de Cimas | Topara</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="pasaporte.css" />
+</head>
+<body>
+  <main class="screen">
+
+    <header class="head">
+      <button type="button" class="head__back" id="btn-volver" aria-label="Volver">
+        <img src="assets/icons/arrow-left-black.svg" alt="" width="26" height="26" />
+      </button>
+      <h1 class="head__title">Pasaporte de Cimas</h1>
+    </header>
+
+    <!-- Portada del pasaporte -->
+    <section class="cover" aria-label="Resumen de tu pasaporte">
+      <div class="cover__top">
+        <img class="cover__logo" src="assets/logo-topara-white.png" alt="Topara" />
+        <div>
+          <p class="cover__eyebrow">PASAPORTE DE CIMAS</p>
+          <p class="cover__name" id="titular">—</p>
+        </div>
+      </div>
+      <dl class="cover__stats">
+        <div><dd id="st-sellos">0</dd><dt>Sellos</dt></div>
+        <div><dd id="st-parches">0</dd><dt>Parches</dt></div>
+        <div><dd id="st-pendientes">0</dd><dt>Por sellar</dt></div>
+      </dl>
+    </section>
+
+    <!-- Cómo funciona -->
+    <details class="how">
+      <summary>¿Cómo funciona el pasaporte?</summary>
+      <ol class="how__list">
+        <li><b>Registra</b> tu actividad: queda guardada con su nombre y fecha.</li>
+        <li><b>Solicita el sello</b> para que revisemos que cumple los estándares de Topara.</li>
+        <li><b>Recibe tu sello</b> cuando la actividad quede verificada.</li>
+        <li><b>Pide tu parche bordado</b>: se asigna según la naturaleza de la actividad.</li>
+      </ol>
+    </details>
+
+    <!-- Registros -->
+    <section class="block" aria-labelledby="t-registros">
+      <h2 class="block__title" id="t-registros">Mis registros</h2>
+
+      <label class="search">
+        <img src="assets/icons/search-gray.svg" alt="" width="20" height="20" />
+        <span class="sr-only">Buscar actividad por nombre</span>
+        <input id="buscar" type="search" placeholder="Buscar actividad por nombre" autocomplete="off" />
+      </label>
+
+      <div class="tabs" id="tabs" role="group" aria-label="Filtrar registros"></div>
+      <div id="lista" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- Hoja inferior: detalle y pedido de parche -->
+  <dialog class="sheet" id="sheet" aria-labelledby="sheet-title">
+    <div id="sheet-body"></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="pasaporte.js"></script>
+</body>
+</html>
